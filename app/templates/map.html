@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/map.css')}}"/>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script type="text/javascript" src= "{{url_for('static',filename='js/map.js')}}"></script>
+    </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy8tt5vdmipUlu4mdbvtoaiXgqHSC4UkI&callback=initMap">
+  </script>
+    </body>
+</html>
