@@ -3,36 +3,68 @@
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 18.0179, lng: -76.8199},
-          zoom: 12
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
+// ------Global Variables-----
+var map; // The map object
+var pickUp; //pick-up location
+var cpos; //current location
+var dest; //destination
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+// -----Generate Map-----
+function createMap(){
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 18.0179, lng: -76.8199},
+    zoom: 14
+  });
+  getCurrent();
+  addressSearch();
+  //route();
+}
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            // map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+// Returns the current location of the user
+function getCurrent() {
+//------Try HTML5 geolocation.------
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      cpos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+    // infoWindow.setPosition(pos);
+    // infoWindow.setContent('Your Location.');
+     pickUp =new google.maps.Marker({
+      position:cpos,
+      title: 'Current Location',
+      draggable:true
+    });
+    map.setCenter(cpos);
+    pickUp.setMap(map);
+
+  }, function() {
+    // handleLocationError(true, infoWindow, map.getCenter());
+  });
+  }
+}
+
+// ----- Address search Listener---
+function addressSearch(){
+  var geocoder = new google.maps.Geocoder();
+  document.getElementById(/*'Your ID'*/).addEventListener('click',function(){
+    geocodeAddress(geocoder,map);
+  });
+}
+
+/* -----Translates an Address into coodinates
+ and places pick-up marker at that location---*/
+function geocodeAddress(geocoder,resultsMap){
+  var address= document.getElementById('address').value;
+  geocoder.geocode({'address': address},function(results,status){
+    if (status === 'OK'){
+      resultMap.setCenter(results[0].geometry.location);
+      pickUp= {position:results[0].geometry.location,
+      title:'Pick Up'
       }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+    }else{
+      alert('We could not locate the address you entered. Status: '+status);
+    }
+  });
+}
