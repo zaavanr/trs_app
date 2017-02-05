@@ -6,8 +6,9 @@
 // ------Global Variables-----
 var map; // The map object
 var pickUp; //pick-up location
-var cpos; //current location
+var cpos; //current location of device
 var dest; //destination
+var cloc; //Client location
 
 // -----Generate Map-----
 function createMap(){
@@ -16,22 +17,18 @@ function createMap(){
     zoom: 14
   });
   getCurrent();
-  addressSearch();
-  //route();
 }
 
-// Returns the current location of the user
+// --Returns the current location of the user--
 function getCurrent() {
-//------Try HTML5 geolocation.------
+//------HTML5 geolocation.------
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       cpos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-    // infoWindow.setPosition(pos);
-    // infoWindow.setContent('Your Location.');
-     pickUp =new google.maps.Marker({
+    pickUp =new google.maps.Marker({
       position:cpos,
       title: 'Current Location',
       draggable:true
@@ -39,9 +36,8 @@ function getCurrent() {
     map.setCenter(cpos);
     pickUp.setMap(map);
 
-  }, function() {
-    // handleLocationError(true, infoWindow, map.getCenter());
-  });
+    }, function() {
+    });
   }
 }
 
@@ -54,17 +50,40 @@ function addressSearch(){
 }
 
 /* -----Translates an Address into coodinates
- and places pick-up marker at that location---*/
-function geocodeAddress(geocoder,resultsMap){
+ and places pick-up marker at that location---
+ @param: geocoder:Geocoder object
+        map: map object*/
+function geocodeAddress(geocoder,map){
   var address= document.getElementById('address').value;
-  geocoder.geocode({'address': address},function(results,status){
+  geocoder.geocoder({'address': address},function(results,status){
     if (status === 'OK'){
-      resultMap.setCenter(results[0].geometry.location);
+      map.setCenter(results[0].geometry.location);
       pickUp= {position:results[0].geometry.location,
       title:'Pick Up'
       }
     }else{
       alert('We could not locate the address you entered. Status: '+status);
     }
+  });
+}
+
+/*-----Draw route between two points-----
+@param: pickUp: pick up coordinates
+        dest: destination coordinates*/
+function drawRoute(pickUp,dest){
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new gogle.maps.DirectionsRenderer;
+  directionsDisplay.setMap(map);
+  document.getElementById(/*Search/Request*/).addEventListener('click',function(){
+    directionsService.route({
+    origin: document.getElementById(/*pickUp*/).value,
+    destination: document.getElementById(/*dest*/).value,
+    waypoints: cloc,
+    travelMode: 'DRIVING'
+    },function(response,status){
+        if(status=='OK'){
+          directionsDisplay.setDirections(response);
+        }else{console.log("directions failed: "+status);}
+    });
   });
 }
