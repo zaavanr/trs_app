@@ -6,9 +6,11 @@
 // ------Global Variables-----
 var map; // The map object
 var pickUp; //pick-up location
-var cpos; //current location of device
-var dest; //destination
+var cpos; //current (position) location of device
+var dest ={lat:18.017213,
+            lng: -76.758697}; //destination
 var cloc; //Client location
+var pos;
 
 // -----Generate Map-----
 function createMap(){
@@ -28,14 +30,27 @@ function getCurrent() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-    pickUp =new google.maps.Marker({
+    pos =new google.maps.Marker({
       position:cpos,
       title: 'Current Location',
       draggable:true
     });
     map.setCenter(cpos);
-    pickUp.setMap(map);
-
+    pos.setMap(map);
+    console.log("current pos; lat:"+cpos.lat+" lng:"+cpos.lng)
+    geocodeAddress(map)
+    // $.ajax('/save-coord', {
+    //   data: {
+    //     x:  '12',
+    //     y: '123'
+    //   },
+    //   method: 'POST'
+    // }).then(function(response) {
+    //    console.log(response);
+    //   //  var coords = JSON.parse('{x: 12, y:13}');
+    //   var coords = response;
+    //    console.log(coords.xcoord);
+    // });
     }, function() {
     });
   }
@@ -53,14 +68,20 @@ function addressSearch(){
  and places pick-up marker at that location---
  @param: geocoder:Geocoder object
         map: map object*/
-function geocodeAddress(geocoder,map){
-  var address= document.getElementById('address').value;
-  geocoder.geocoder({'address': address},function(results,status){
+function geocodeAddress(map){
+  var geocoder = new google.maps.Geocoder();
+  var address= '656 Hope Rd Kingston';//document.getElementById('address').value;
+  geocoder.geocode({'address': address},function(results,status){
     if (status === 'OK'){
       map.setCenter(results[0].geometry.location);
-      pickUp= {position:results[0].geometry.location,
-      title:'Pick Up'
-      }
+      pickUp =new google.maps.Marker({
+      position:results[0].geometry.location,
+      title: 'Current',
+      draggable:true
+      });
+      pos.setMap(null);
+      pickUp.setMap(map);
+      console.log("pickUp "+pickUp.position);
     }else{
       alert('We could not locate the address you entered. Status: '+status);
     }
