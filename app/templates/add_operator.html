@@ -1,0 +1,25 @@
+<h1>Add Operator</h1>
+{% with messages = get_flashed_messages()%}
+  {%if messages%}
+  <ul>
+    {%for message in messages%}
+      <li>
+        {{message}}
+      </li>
+    {%endfor%}
+  </ul>
+  {%endif%}
+{%endwith%}
+
+<form method="POST" action="{{ url_for('add_operator')}}">
+  {{ form.csrf_token}}
+  <div>{{form.ofname.label}} {{form.ofname(size=10)}}</div>
+  <div>{{form.olname.label}} {{form.olname(size=10)}}</div>
+  <div>{{form.oadd1.label}} {{form.oadd1(size=20)}}</div>
+  <div>{{form.oadd2.label}} {{form.oadd2(size=20)}}</div>
+  <div>{{form.ostreet.label}} {{form.ostreet(size=10)}}</div>
+  <div>{{form.ocity.label}} {{form.ocity(size=10)}}</div>
+  <div>{{form.oparish.label}} {{form.oparish(size=10)}}</div>
+  <div>{{form.otrn.label}} {{form.otrn(size=10)}}</div>
+  <input type="submit" />
+</form>

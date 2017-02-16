@@ -1,0 +1,22 @@
+<h1>Add Vehicle</h1>
+{% with messages = get_flashed_messages()%}
+  {%if messages%}
+  <ul>
+    {%for message in messages%}
+      <li>
+        {{message}}
+      </li>
+    {%endfor%}
+  </ul>
+  {%endif%}
+{%endwith%}
+
+<form method="POST" action="{{ url_for('add_vehicle')}}">
+  {{ form.csrf_token}}
+  <div>{{form.platenum.label}} {{form.platenum(size=10)}}</div>
+  <div>{{form.vmodel.label}} {{form.vmodel(size=10)}}</div>
+  <div>{{form.vmake.label}} {{form.vmake(size=20)}}</div>
+  <div>{{form.vcolour.label}} {{form.vcolour(size=20)}}</div>
+  <div>{{form.seat_cap.label}} {{form.seat_cap(size=10)}}</div>
+  <input type="submit" />
+</form>

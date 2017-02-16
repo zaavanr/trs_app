@@ -3,8 +3,15 @@ from flask import render_template, request, redirect, url_for, jsonify,flash
 from forms import clientForm, driverForm, operatorForm, vehicleForm
 from models import Client, Driver, Operator, Vehicle
 
-@app.route('/')
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ))
 
+@app.route('/')
 def home():
     return render_template('map.html', x=12)
 
@@ -41,10 +48,74 @@ def add_client():
     flash_errors(cform)
     return render_template('add_client.html',form=cform)
 
-def flash_errors(form):
-    for field, errors in form.errors.items():
-        for error in errors:
-            flash(u"Error in the %s field - %s" % (
-                getattr(form, field).label.text,
-                error
-            ))
+@app.route('/add-driver', methods=['POST','GET'])
+def add_driver():
+    dform=driverForm()
+
+    if request.method=='POST':
+        if dform.validate_on_submit():
+            dfname=dform.dfname.data
+            dlname=dform.dlname.data
+            dcontact=dform.dcontact.data
+            demail=dform.demail.data
+            dpassword=dform.dpassword.data
+            dadd1=dform.dadd1.data
+            dadd2=dform.dadd2.data
+            dstreet=dform.dstreet.data
+            dcity=dform.dcity.data
+            dparish=dform.dparish.data
+            dtrn=dform.dtrn.data
+
+            driver= Driver(dfname,dlname,dcontact,demail,dpassword,dadd1,dadd2,dstreet,dcity,dparish,dtrn)
+            db.session.add(driver)
+            db.session.commit()
+
+            flash('User added sucessfully','success')
+            return redirect (url_for('home'))
+    flash_errors(dform)
+    return render_template('add_driver.html',form=dform)
+
+@app.route('/add-operator', methods=['POST','GET'])
+def add_operator():
+    oform=operatorForm()
+
+    if request.method=='POST':
+        if oform.validate_on_submit():
+            ofname=oform.ofname.data
+            olname=oform.olname.data
+            oadd1=oform.oadd1.data
+            oadd2=oform.oadd2.data
+            ostreet=oform.ostreet.data
+            ocity=oform.ocity.data
+            oparish=oform.oparish.data
+            otrn=oform.otrn.data
+
+            operator= Operator(ofname,olname,oadd1,oadd2,ostreet,ocity,oparish,otrn)
+            db.session.add(operator)
+            db.session.commit()
+
+            flash('User added sucessfully','success')
+            return redirect (url_for('home'))
+    flash_errors(oform)
+    return render_template('add_operator.html',form=oform)
+
+@app.route('/add-vehicle', methods=['POST','GET'])
+def add_vehicle():
+    vform=vehicleForm()
+
+    if request.method=='POST':
+        if vform.validate_on_submit():
+            platenum=vform.platenum.data
+            vmodel=vform.vmodel.data
+            vmake=vform.vmake.data
+            vcolour=vform.vcolour.data
+            seat_cap=vform.seat_cap.data
+
+            vehicle= Vehicle(platenum,vmodel,vmake,vcolour,seat_cap)
+            db.session.add(vehicle)
+            db.session.commit()
+
+            flash('User added sucessfully','success')
+            return redirect (url_for('home'))
+    flash_errors(vform)
+    return render_template('add_vehicle.html',form=vform)

@@ -31,7 +31,7 @@ class Client(db.Model):
 
 class Driver(db.Model):
 	__tablename__ = 'driver'
-	trn= db.Column('trn', db.Integer, primary_key= True)
+	dtrn= db.Column('trn', db.Integer, primary_key= True)
 	dfname= db.Column('dfname', db.Unicode)
 	dlname= db.Column('dlname', db.Unicode)
 	dcontact= db.Column('dcontact',db.Integer)
@@ -43,30 +43,38 @@ class Driver(db.Model):
 	dcity= db.Column('dcity', db.Unicode)
 	dparish= db.Column('dparish', db.Unicode)
 
-	def __init__(self,trn,dfname,dlname,dstreet,dcity,dparish):
-		self.trn= trn
+	def __init__(self,dtrn,dfname,dlname,dcontact,demail,dpassword,daddr1,daddr2,dstreet,dcity,dparish):
+		self.dtrn= dtrn
 		self.dfname= dfname
 		self.dlname= dlname
+		self.dcontact=dcontact
+		self.demail=demail
+		self.dpassword=dpassword
+		self.daddr1 =daddr1
+		self.daddr2=daddr2
 		self.dstreet= dstreet
 		self.dcity= dcity
 		self.dparish= dparish
 
 
 class Operator(db.Model):
-	__tablename__ = 'operater'
+	__tablename__ = 'operator'
 	opID= db.Column('opID', db.Unicode, primary_key=True)
 	ofname= db.Column('ofname', db.Unicode)
 	olname= db.Column('olname', db.Unicode)
-	otrn= db.Column('otrn', db.Integer)
+	oadd1=db.Column('oadd1',db.Unicode)
+	oadd2=db.Column('oadd2',db.Unicode)
 	ostreet= db.Column('ostreet', db.Unicode)
 	ocity= db.Column('ocity', db.Unicode)
 	oparish= db.Column('oparish', db.Unicode)
+	otrn= db.Column('otrn', db.Integer)
 
-	def __init__(self,opID,ofname,olname,otrn,ostreet,ocity,oparish):
-		self.opID= opID
+	def __init__(self,ofname,olname,oadd1,oadd2,otrn,ostreet,ocity,oparish):
 		self.ofname= ofname
 		self.olname= olname
 		self.otrn= otrn
+		self.oadd1
+		self.oadd2
 		self.ostreet= ostreet
 		self.ocity= ocity
 		self.oparish= oparish

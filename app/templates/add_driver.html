@@ -1,0 +1,28 @@
+<h1>Add Driver</h1>
+{% with messages = get_flashed_messages()%}
+  {%if messages%}
+  <ul>
+    {%for message in messages%}
+      <li>
+        {{message}}
+      </li>
+    {%endfor%}
+  </ul>
+  {%endif%}
+{%endwith%}
+
+<form method="POST" action="{{ url_for('add_driver')}}">
+  {{ form.csrf_token}}
+  <div>{{form.dfname.label}} {{form.dfname(size=10)}}</div>
+  <div>{{form.dlname.label}} {{form.dlname(size=10)}}</div>
+  <div>{{form.dcontact.label}} {{form.dcontact(size=10)}}</div>
+  <div>{{form.demail.label}} {{form.demail(size=10, type="email")}}</div>
+  <div>{{form.dpassword.label}} {{form.dpassword(size=10,type="password")}}</div>
+  <div>{{form.dadd1.label}} {{form.dadd1(size=20)}}</div>
+  <div>{{form.dadd2.label}} {{form.dadd2(size=20)}}</div>
+  <div>{{form.dstreet.label}} {{form.dstreet(size=10)}}</div>
+  <div>{{form.dcity.label}} {{form.dcity(size=10)}}</div>
+  <div>{{form.dparish.label}} {{form.dparish(size=10)}}</div>
+  <div>{{form.dtrn.label}} {{form.dtrn(size=10)}}</div>
+  <input type="submit" />
+</form>

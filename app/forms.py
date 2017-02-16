@@ -39,8 +39,8 @@ class operatorForm(FlaskForm):
 
 class vehicleForm(FlaskForm):
     platenum= StringField('Registration Number', validators=[InputRequired()])
-    model= StringField('Model',validators=[InputRequired()])
-    model= StringField('Model',validators=[InputRequired()])
-    make= StringField('Make',validators=[InputRequired()])
-    colour= StringField('Colour',validators=[InputRequired()])
+    vmodel= StringField('Model',validators=[InputRequired()])
+    vmodel= StringField('Model',validators=[InputRequired()])
+    vmake= StringField('Make',validators=[InputRequired()])
+    vcolour= StringField('Colour',validators=[InputRequired()])
     seat_cap= StringField('Seating Capacity',validators=[InputRequired()])
