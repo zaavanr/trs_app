@@ -22,8 +22,8 @@ function createMap(){
   geocoder = new google.maps.Geocoder();
   getCurrent();
   setPickUp();
-  setDestination();
-  drawRoute(pickUpLoc,destLoc);
+  // setDestination();
+  // drawRoute(pickUpLoc,destLoc);
 }
 
 // --Returns the current location of the user--
@@ -72,8 +72,15 @@ function setPickUp(){
       }else{('We could not locate the address you entered. Status: '+status);}
   //});
   console.log("Pick up Loc if search "+pickUpLoc);
+  // pickUp =new google.maps.Marker({
+  //   position:pickUpLoc,
+  //   title: 'Pick up',
+  //   draggable:true,
+  //   center: pickUpLoc
+  // });
   pickUp.setPosition(pickUpLoc);
   pickUp.setMap(map);
+  pickUp.setTitle("Pick up");
   map.setCenter(pickUpLoc);
 });
 }

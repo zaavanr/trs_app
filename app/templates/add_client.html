@@ -1,0 +1,26 @@
+{% with messages = get_flashed_messages()%}
+  {%if messages%}
+  <ul>
+    {%for message in messages%}
+      <li>
+        {{message}}
+      </li>
+    {%endfor%}
+  </ul>
+  {%endif%}
+{%endwith%}
+
+<form method="POST" action="{{ url_for('add_client')}}">
+  {{ form.csrf_token}}
+  <div>{{form.cfname.label}} {{form.cfname(size=10)}}</div>
+  <div>{{form.clname.label}} {{form.clname(size=10)}}</div>
+  <div>{{form.ccontact.label}} {{form.ccontact(size=10)}}</div>
+  <div>{{form.cemail.label}} {{form.cemail(size=10, type="email")}}</div>
+  <div>{{form.cpassword.label}} {{form.cpassword(size=10,type="password")}}</div>
+  <div>{{form.cadd1.label}} {{form.cadd1(size=20)}}</div>
+  <div>{{form.cadd2.label}} {{form.cadd2(size=20)}}</div>
+  <div>{{form.cstreet.label}} {{form.cstreet(size=10)}}</div>
+  <div>{{form.ccity.label}} {{form.ccity(size=10)}}</div>
+  <div>{{form.cparish.label}} {{form.cparish(size=10)}}</div>
+  <input type="submit" />
+</form>
