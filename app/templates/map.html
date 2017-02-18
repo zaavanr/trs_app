@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/map.css')}}"/>
     </head>
     <body>
+      <label id="p" for="pickup">Pick Up:</label>
+      <input id="pickup" class="controls" type="text" placeholder="Search Pickup Location">
+      <input id='psubmit' type="submit" value="search"/>
+      <label id="d"for="dest">Destination:</label>
+      <input id="dest" name="dest" class="controls" type="text" placeholder="Where to?">
+      <input id='dsubmit' type="submit" value="search"/>
       <div id="map"></div>
       <script type="text/javascript" src= "{{url_for('static',filename='js/map.js')}}"></script>
     </script>
