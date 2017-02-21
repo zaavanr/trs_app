@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='Biggest Baddest Key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://administrator:''@localhost/trs.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/trs'
 
 db=SQLAlchemy(app)
 

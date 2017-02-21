@@ -44,3 +44,4 @@ class vehicleForm(FlaskForm):
     vmake= StringField('Make',validators=[InputRequired()])
     vcolour= StringField('Colour',validators=[InputRequired()])
     seat_cap= StringField('Seating Capacity',validators=[InputRequired()])
+    vclass= StringField('Class',validators=[InputRequired()])

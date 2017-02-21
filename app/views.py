@@ -110,8 +110,9 @@ def add_vehicle():
             vmake=vform.vmake.data
             vcolour=vform.vcolour.data
             seat_cap=vform.seat_cap.data
+            vclass=vform.vclass.data
 
-            vehicle= Vehicle(platenum,vmodel,vmake,vcolour,seat_cap)
+            vehicle= Vehicle(platenum,vmodel,vmake,vcolour,seat_cap,vclass)
             db.session.add(vehicle)
             db.session.commit()
 

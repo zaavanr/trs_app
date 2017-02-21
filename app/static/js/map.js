@@ -48,7 +48,6 @@ function getCurrent() {
     pickUp.setMap(map);
     console.log("current pos; lat:"+cpos.lat+" lng:"+cpos.lng);
     console.log("Pickup if set to current: "+pickUpLoc.lat+","+pickUpLoc.lng);
-    //geocodeAddress(map)
     // $.ajax('/save-coord', {
     //   data: {
     //     x:  '12',
@@ -133,44 +132,6 @@ function setDestination(){
 });});
 
 }
-
-// ----- Address search Listener---
-// function addressSearch(){
-//   //var geocoder = new google.maps.Geocoder();
-//   ///document.getElementById(/*'Your ID'*/).addEventListener('click',function(){
-//     var address='656 Hope Rd Kingston';
-//     geocodeAddress(address);
-//   //});
-// }
-
-/* -----Translates an Address into coodinates
- and places pick-up marker at that location---
- @param: geocoder:Geocoder object
-        map: map object*/
-
-// function geocodeAddress(address){
-//   var geocoder = new google.maps.Geocoder();
-//   //var address= '656 Hope Rd Kingston';//document.getElementById('address').value;
-//   geocoder.geocode({'address': address},function(results,status){
-//     if (status === 'OK'){
-//       var coords= results[0].geometry.location;
-//       console.log ("coords "+coords);
-//       return coords;
-//       // map.setCenter(results[0].geometry.location);
-//       // pickUp =new google.maps.Marker({
-//       // position:results[0].geometry.location,
-//       // title: 'Pick up location',
-//       // draggable:true
-//       // });
-//       // pos.setMap(null);
-//       // pickUp.setMap(map);
-//       // console.log("pickUp "+pickUp.position);
-//     }else{
-//       alert('We could not locate the address you entered. Status: '+status);
-//     }
-//   });
-// }
-
 /*-----Draw route between two points-----
 @param: pickUp: pick up coordinates
         dest: destination coordinates*/
@@ -190,5 +151,4 @@ function drawRoute(){
           //destLoc.setMap(null);
         }else{console.log("directions failed: "+status);}
     });console.log("Route");
-  //});
 }

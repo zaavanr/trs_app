@@ -87,13 +87,15 @@ class Vehicle(db.Model):
 	vmake= db.Column('vmake', db.Unicode)
 	vcolour= db.Column('vcolour', db.Unicode)
 	seat_cap= db.Column('seat_cap', db.Integer)
+	vclass= db.Column('class', db.Integer)
 
-	def __init__(self,platenum,vmodel,vmake,vcolour,seat_cap):
+	def __init__(self,platenum,vmodel,vmake,vcolour,seat_cap,vclass):
 		self.platenum= platenum
 		self.vmodel= vmodel
 		self.vmake= vmake
 		self.vcolour= vcolour
 		self.seat_cap= seat_cap
+		self.vclass=vclass
 
 # class Report(db.Model):		#Report that the operator would see from viewing the driver
 # 	__tablename__= 'report'
