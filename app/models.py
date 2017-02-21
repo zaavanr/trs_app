@@ -2,19 +2,18 @@ from app import db
 
 class Client(db.Model):
 	__tablename__ = 'client'
-	cid= db.Column('cid', db.Unicode, autoincrement=True, primary_key=True)
+	cid= db.Column('cid', db.Integer, autoincrement=True, primary_key=True)
 	cfname= db.Column('cfname', db.Unicode)
 	clname= db.Column('clname', db.Unicode)
 	ccontact= db.Column('ccontact', db.Integer)
 	cemail= db.Column('cemail',db.Unicode)
 	cpassword= db.Column('cpassword', db.Unicode)
 	cadd1=db.column('cadd1', db.Unicode)
-	cadd2=db.Column('cadd2',db.Unicode)						#Home location that the client can set
-	cstreet= db.Column('street', db.Unicode)
+	cadd2=db.Column('cadd2',db.Unicode)
 	ccity= db.Column('city', db.Unicode)
 	cparish= db.Column('parish', db.Unicode)
 
-	def __init__(self,cfname,clname,ccontact,cemail,cpassword,cadd1,cadd2,cstreet,ccity,cparish):
+	def __init__(self,cfname,clname,ccontact,cemail,cpassword,cadd1,cadd2,ccity,cparish):
 		self.cfname= cfname
 		self.clname= clname
 		self.ccontact= ccontact
@@ -22,7 +21,6 @@ class Client(db.Model):
 		self.cpassword=cpassword
 		self.cadd1=cadd1
 		self.cadd2=cadd2
-		self.cstreet= cstreet
 		self.ccity= ccity
 		self.cparish= cparish
 
@@ -31,7 +29,7 @@ class Client(db.Model):
 
 class Driver(db.Model):
 	__tablename__ = 'driver'
-	dtrn= db.Column('trn', db.Integer, primary_key= True)
+	dtrn= db.Column('dtrn', db.Integer, primary_key= True)
 	dfname= db.Column('dfname', db.Unicode)
 	dlname= db.Column('dlname', db.Unicode)
 	dcontact= db.Column('dcontact',db.Integer)
@@ -39,11 +37,10 @@ class Driver(db.Model):
 	dpassword= db.Column('dpassword', db.Unicode)
 	daddr1= db.Column('daddr1', db.Unicode)
 	daddr2= db.Column('daddr2', db.Unicode)
-	dstreet= db.Column('dstreet', db.Unicode)
 	dcity= db.Column('dcity', db.Unicode)
 	dparish= db.Column('dparish', db.Unicode)
 
-	def __init__(self,dtrn,dfname,dlname,dcontact,demail,dpassword,daddr1,daddr2,dstreet,dcity,dparish):
+	def __init__(self,dtrn,dfname,dlname,dcontact,demail,dpassword,daddr1,daddr2,dcity,dparish):
 		self.dtrn= dtrn
 		self.dfname= dfname
 		self.dlname= dlname
@@ -52,30 +49,27 @@ class Driver(db.Model):
 		self.dpassword=dpassword
 		self.daddr1 =daddr1
 		self.daddr2=daddr2
-		self.dstreet= dstreet
 		self.dcity= dcity
 		self.dparish= dparish
 
 
 class Operator(db.Model):
 	__tablename__ = 'operator'
-	opID= db.Column('opID', db.Unicode, primary_key=True)
+	opID= db.Column('opID', db.Integer, primary_key=True)
 	ofname= db.Column('ofname', db.Unicode)
 	olname= db.Column('olname', db.Unicode)
 	oadd1=db.Column('oadd1',db.Unicode)
 	oadd2=db.Column('oadd2',db.Unicode)
-	ostreet= db.Column('ostreet', db.Unicode)
 	ocity= db.Column('ocity', db.Unicode)
 	oparish= db.Column('oparish', db.Unicode)
 	otrn= db.Column('otrn', db.Integer)
 
-	def __init__(self,ofname,olname,oadd1,oadd2,otrn,ostreet,ocity,oparish):
+	def __init__(self,ofname,olname,oadd1,oadd2,otrn,ocity,oparish):
 		self.ofname= ofname
 		self.olname= olname
 		self.otrn= otrn
-		self.oadd1
-		self.oadd2
-		self.ostreet= ostreet
+		self.oadd1=oadd1
+		self.oadd2=oadd2
 		self.ocity= ocity
 		self.oparish= oparish
 

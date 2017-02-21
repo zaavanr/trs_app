@@ -10,7 +10,6 @@ class clientForm(FlaskForm):
     cpassword= PasswordField('Password',validators=[InputRequired()])
     cadd1=StringField('Address 1', validators=[InputRequired()])
     cadd2=StringField('Address 2', validators=[InputRequired()])
-    cstreet= StringField('Street', validators=[InputRequired()])
     ccity= StringField('City', validators=[InputRequired()])
     cparish= StringField('Parish', validators=[InputRequired()])
 
@@ -22,7 +21,6 @@ class driverForm(FlaskForm):
     dpassword= PasswordField('Password',validators=[InputRequired()])
     dadd1=StringField('Address 1', validators=[InputRequired()])
     dadd2=StringField('Address 2', validators=[InputRequired()])
-    dstreet= StringField('Street', validators=[InputRequired()])
     dcity= StringField('City', validators=[InputRequired()])
     dparish= StringField('Parish', validators=[InputRequired()])
     dtrn=IntegerField('TRN',validators=[InputRequired()])
@@ -32,7 +30,6 @@ class operatorForm(FlaskForm):
     olname= StringField('Last Name', validators=[InputRequired()])
     oadd1=StringField('Address 1', validators=[InputRequired()])
     oadd2=StringField('Address 2', validators=[InputRequired()])
-    ostreet= StringField('Street', validators=[InputRequired()])
     ocity= StringField('City', validators=[InputRequired()])
     oparish= StringField('Parish', validators=[InputRequired()])
     otrn=IntegerField('TRN',validators=[InputRequired()])

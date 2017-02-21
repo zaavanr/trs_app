@@ -35,11 +35,10 @@ def add_client():
             cpassword=cform.cpassword.data
             cadd1=cform.cadd1.data
             cadd2=cform.cadd2.data
-            cstreet=cform.cstreet.data
             ccity=cform.ccity.data
             cparish=cform.cparish.data
 
-            client= Client(cfname,clname,ccontact,cemail,cpassword,cadd1,cadd2,cstreet,ccity,cparish)
+            client= Client(cfname,clname,ccontact,cemail,cpassword,cadd1,cadd2,ccity,cparish)
             db.session.add(client)
             db.session.commit()
 
@@ -61,12 +60,11 @@ def add_driver():
             dpassword=dform.dpassword.data
             dadd1=dform.dadd1.data
             dadd2=dform.dadd2.data
-            dstreet=dform.dstreet.data
             dcity=dform.dcity.data
             dparish=dform.dparish.data
             dtrn=dform.dtrn.data
 
-            driver= Driver(dfname,dlname,dcontact,demail,dpassword,dadd1,dadd2,dstreet,dcity,dparish,dtrn)
+            driver= Driver(dfname,dlname,dcontact,demail,dpassword,dadd1,dadd2,dcity,dparish,dtrn)
             db.session.add(driver)
             db.session.commit()
 
@@ -85,12 +83,11 @@ def add_operator():
             olname=oform.olname.data
             oadd1=oform.oadd1.data
             oadd2=oform.oadd2.data
-            ostreet=oform.ostreet.data
             ocity=oform.ocity.data
             oparish=oform.oparish.data
             otrn=oform.otrn.data
 
-            operator= Operator(ofname,olname,oadd1,oadd2,ostreet,ocity,oparish,otrn)
+            operator= Operator(ofname,olname,oadd1,oadd2,ocity,oparish,otrn)
             db.session.add(operator)
             db.session.commit()
 

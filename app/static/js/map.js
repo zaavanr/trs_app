@@ -141,12 +141,13 @@ function drawRoute(){
   directionsDisplay.setMap(map);
   //document.getElementById(/*Search/Request*/).addEventListener('click',function(){
     directionsService.route({
-    origin:$("#pickup").val(),//document.getElementById(/*pickUp*/).value,
-    destination: $("#dest").val(),//document.getElementById(/*dest*/).value,
+    origin:"21 Paddington Terrace, Kingston",/*$("#pickup").val(),*/
+    destination: "3 Charlemont Drive, Kingston", /*$("#dest").val(),*/
     //waypoints: ['656 Hope Rd Kingston'],
     travelMode: 'DRIVING'
     },function(response,status){
         if(status=='OK'){
+          //console.log("RESPONSE: "+JSON.parse(response.rows)
           directionsDisplay.setDirections(response);
           //destLoc.setMap(null);
         }else{console.log("directions failed: "+status);}
